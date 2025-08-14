@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:8.2.0
+    container_name: redis-demo
+    restart: always
+    command: redis-server --requirepass mylocalpass  --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
