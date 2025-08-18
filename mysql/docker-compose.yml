@@ -1,5 +1,9 @@
 name: mysql-stack
 
+networks:
+  home-net:
+    external: true
+
 services:
   mysql:
     image: mysql:8.0
@@ -15,6 +19,8 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - home-net
 
 volumes:
   mysql_data:
