@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   redis:
     image: redis:8.2.0
@@ -10,6 +8,14 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    networks:
+      - shared-net
 
 volumes:
   redis_data:
+
+networks:
+  shared-net:
+    external: true
+    name: shared-net
+    driver: bridge
