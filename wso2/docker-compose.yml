@@ -1,0 +1,26 @@
+services:
+  wso2am:
+    image: wso2/wso2am:latest
+    container_name: wso2am
+    ports:
+      - "9443:9443"   # HTTPS management console
+      - "9763:9763"   # HTTP management console
+      - "8280:8280"   # Gateway HTTP port
+      - "8243:8243"   # Gateway HTTPS port
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx1024m
+    volumes:
+      - ./deployment.toml:/home/wso2carbon/wso2am-*/repository/conf/deployment.toml
+      - wso2am_repository:/home/wso2carbon/wso2am-*/repository
+    networks:
+      - shared-net
+    restart: unless-stopped
+
+volumes:
+  wso2am_repository:
+
+networks:
+  shared-net:
+    external: true
+    name: shared-net
+    driver: bridge
