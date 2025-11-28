@@ -27,21 +27,12 @@ services:
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin123
     ports:
       - "8080:8080"
-    depends_on:
-      - postgres
+    networks:
+      - shared-net
 
-  postgres:
-    image: postgres:14.18
-    container_name: keycloak-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: kcpassword
-    volumes:
-      - kc_db_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+networks:
+  shared-net:
+    external: true
 
 volumes:
   kc_db_data:

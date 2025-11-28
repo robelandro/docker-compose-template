@@ -1,0 +1,45 @@
+[server]
+hostname = "wso2am"
+node_ip = "127.0.0.1"
+server_role = "api-manager"
+
+# Super admin configuration
+[super_admin]
+username = "admin"
+password = "admin"
+create_admin_account = true
+
+# Database configurations - MySQL
+[database.apim_db]
+type = "mysql"
+url = "jdbc:mysql://mysql:3306/WSO2AM_DB"
+username = "wso2"
+password = "wso2_password"
+driver = "com.mysql.cj.jdbc.Driver"
+
+[database.shared_db]
+type = "mysql"
+url = "jdbc:mysql://mysql:3306/WSO2SHARED_DB"
+username = "wso2"
+password = "wso2_password"
+driver = "com.mysql.cj.jdbc.Driver"
+
+# User store
+[user_store]
+type = "database"
+
+# API Manager configurations
+[apim.gateway]
+gateway_environments = ["Production and Sandbox"]
+
+# Enable Micro Integrator Gateway
+[apim.micro_integrator]
+enabled = true
+endpoint = "https://mi:8253"
+
+# # Key Manager configuration
+# [apim.key_manager]
+# service_url = "https://wso2am:9443/services/"
+# username = "admin"
+# password = "admin"
+

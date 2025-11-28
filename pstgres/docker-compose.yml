@@ -1,18 +1,23 @@
-version: '3.8'
 
 services:
   postgres:
     image: postgres:14.18
-    container_name: postgres-db
+    container_name: keycloak-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: strongpassword
-      POSTGRES_DB: catdbdb
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: kcpassword
+    volumes:
+      - kc_db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
 
 volumes:
-  postgres_data:
+  kc_db_data:

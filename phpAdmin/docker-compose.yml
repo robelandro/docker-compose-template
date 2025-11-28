@@ -1,7 +1,3 @@
-networks:
-  home-net:
-    external: true
-
 services:
   phpmyadmin:
     image: phpmyadmin
@@ -12,4 +8,8 @@ services:
       PMA_HOSTS: mysql,mysql-3e7cbfc8-blogit.l.aivencloud.com:23426
       PMA_PORT: 3306, 23426
     networks:
-      - home-net
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
