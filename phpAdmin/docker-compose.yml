@@ -11,5 +11,6 @@ services:
     environment:
       PMA_HOSTS: mysql,mysql-3e7cbfc8-blogit.l.aivencloud.com:23426
       PMA_PORT: 3306, 23426
+      UPLOAD_LIMIT: 64M
     networks:
       - home-net

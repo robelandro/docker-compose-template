@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wp_site
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_NAME: wp_app
+      WORDPRESS_DB_USER: wp_app_user
+      WORDPRESS_DB_PASSWORD: wp_app_password
+    volumes:
+      - wp_volume:/var/www/html
+    networks:
+      - home-net
+
+volumes:
+  wp_volume:
+
+networks:
+  home-net:
+    external: true
