@@ -1,0 +1,15 @@
+services:
+  mobsf:
+    image: opensecurity/mobile-security-framework-mobsf:latest
+    container_name: mobsf
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persists your scan data, reports, and database
+      - mobsf_data:/home/mobsf/.MobSF
+    environment:
+      - MOBSF_DISABLE_AUTHENTICATION=0  # Set to 1 to skip the login screen
+    restart: always
+
+volumes:
+  mobsf_data:

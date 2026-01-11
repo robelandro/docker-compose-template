@@ -1,0 +1,27 @@
+services:
+
+  tolgee:
+    image: tolgee/tolgee:latest
+    container_name: tolgee
+    ports:
+      - "3428:8080"
+      - '25432:25432'
+    environment:
+      spring.config.additional-location: file:///config.yaml
+
+    volumes:
+      - ./data:/data
+      - ./config.yaml:/config.yaml
+
+    restart: unless-stopped
+    networks:
+      - shared-net
+#     volumes:
+#       - tolgee_data:/data
+
+# volumes:
+#   tolgee_data:
+
+networks:
+  shared-net:
+    external: true

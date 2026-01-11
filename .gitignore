@@ -1,2 +1,4 @@
 *.jar
 *.car
+
+/i18b/data

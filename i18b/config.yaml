@@ -1,0 +1,13 @@
+tolgee:
+  postgres-autostart:
+    enabled: false
+  authentication:
+    enabled: true
+    initial-password: admin
+    initial-username: admin
+    jwt-secret: KKMSU7Jftce63Z9QAwT5wAppgUyGa5HKIYtd5pcAGOhkZJeX8g1ubYh7WowygXIt
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/tolgee
+    username: tolgee
+    password: tolgee

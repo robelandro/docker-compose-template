@@ -2,7 +2,7 @@
 services:
   postgres:
     image: postgres:14.18
-    container_name: keycloak-db
+    container_name: postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: keycloak

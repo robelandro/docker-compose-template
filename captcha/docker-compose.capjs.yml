@@ -1,0 +1,21 @@
+services:
+  capjs:
+    image: tiago2/cap:latest
+    container_name: capjs
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      ADMIN_KEY: ${CAP_ADMIN_KEY}
+      CAP_ENABLE_DASHBOARD: "true"
+      CAP_LOG_LEVEL: info
+    volumes:
+      - capjs-data:/usr/src/app/.data
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+
+volumes:
+  capjs-data:
