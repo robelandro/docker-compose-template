@@ -1,0 +1,24 @@
+services:
+  odoo-app:
+    image: odoo:16.0
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - odoo-web-data:/var/lib/odoo
+    environment:
+      - HOST=keycloak-db
+      - PORT=5432
+      - USER=keycloak
+      - PASSWORD=kcpassword
+      - NAME=odoo
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
+
+volumes:
+  odoo-web-data:

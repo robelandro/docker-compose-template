@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  rancher:
+    image: rancher/rancher:latest
+    container_name: rancher
+    restart: always
+    ports:
+      - "9443:443"   # Rancher UI
+    volumes:
+      - /var/lib/rancher:/var/lib/rancher
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
+
+volumes:
+  rancher_data:

@@ -1,0 +1,20 @@
+services:
+  dyrector:
+    image: dyrector/dyrectorio:latest
+    container_name: dyrector
+    restart: always
+    ports:
+      - "8080:8080"   # Dyrector UI
+    volumes:
+      - dyrector_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
+
+volumes:
+  dyrector_data:
+
