@@ -1,0 +1,20 @@
+{
+  "identities": [
+    {
+      "name": "newappuser",
+      "credentials": [
+        {
+          "accessKey": "newappuser",
+          "secretKey": "newappsecret"
+        }
+      ],
+      "actions": [
+        "Admin",
+        "Read",
+        "Write",
+        "List",
+        "Tagging"
+      ]
+    }
+  ]
+}

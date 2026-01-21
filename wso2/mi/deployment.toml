@@ -31,7 +31,7 @@ auth_url_group = "tcp://wso2am:9711"
 # Database - MySQL for MI
 [database.shared_db]
 type = "mysql"
-url = "jdbc:mysql://mysql:3306/WSO2SHARED_DB"
+url = "jdbc:mysql://mysql:3306/WSO2SHARED_DB?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;autoReconnect=true"
 username = "wso2"
 password = "wso2_password"
 driver = "com.mysql.cj.jdbc.Driver"

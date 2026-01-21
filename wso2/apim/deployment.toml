@@ -12,14 +12,14 @@ create_admin_account = true
 # Database configurations - MySQL
 [database.apim_db]
 type = "mysql"
-url = "jdbc:mysql://mysql:3306/WSO2AM_DB"
+url = "jdbc:mysql://mysql:3306/WSO2AM_DB?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;autoReconnect=true"
 username = "wso2"
 password = "wso2_password"
 driver = "com.mysql.cj.jdbc.Driver"
 
 [database.shared_db]
 type = "mysql"
-url = "jdbc:mysql://mysql:3306/WSO2SHARED_DB"
+url = "jdbc:mysql://mysql:3306/WSO2SHARED_DB?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;autoReconnect=true"
 username = "wso2"
 password = "wso2_password"
 driver = "com.mysql.cj.jdbc.Driver"

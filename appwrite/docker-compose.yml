@@ -1,0 +1,50 @@
+services:
+  appwrite:
+    image: appwrite/appwrite:1.8.1
+    container_name: appwrite
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      _APP_ENV: production
+      _APP_OPENSSL_KEY_V1: your-secret-key
+      _APP_DOMAIN: localhost
+      _APP_DOMAIN_TARGET: localhost
+      _APP_DB_HOST: mysql
+      _APP_DB_PORT: 3306
+      _APP_DB_USER: appwrite
+      _APP_DB_PASS: appwrite_password
+      _APP_DB_SCHEMA: appwrite
+      _APP_REDIS_HOST: redis
+      _APP_REDIS_PORT: 6379
+      _APP_REDIS_USER: 
+      _APP_REDIS_PASS: mylocalpass
+    networks:
+      - shared-net
+  appwrite-worker-databases:
+    image: appwrite/appwrite:1.8.1
+    entrypoint: worker-databases
+    container_name: appwrite-worker-databases
+    restart: unless-stopped
+    networks:
+      - shared-net
+    environment:
+      - _APP_ENV
+      - _APP_WORKER_PER_CORE
+      - _APP_OPENSSL_KEY_V1
+      - _APP_REDIS_HOST
+      - _APP_REDIS_PORT
+      - _APP_REDIS_USER
+      - _APP_REDIS_PASS
+      - _APP_DB_HOST
+      - _APP_DB_PORT
+      - _APP_DB_SCHEMA
+      - _APP_DB_USER
+      - _APP_DB_PASS
+      - _APP_LOGGING_CONFIG
+
+networks:
+  shared-net:
+    external: true
+

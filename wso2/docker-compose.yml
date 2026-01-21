@@ -1,35 +1,35 @@
 services:
   mi:
-    image: wso2/wso2mi:4.5.0
+    image: wso2/wso2mi:4.2.0
     container_name: wso2mi
     hostname: mi
     ports:
       - "8290:8290"   # MI HTTP
       - "8253:8253"   # MI HTTPS
     volumes:
-      - ./mi/deployment.toml:/home/wso2carbon/wso2mi-4.5.0/conf/deployment.toml
-      - ./carbonapps:/home/wso2carbon/wso2mi-4.5.0/repository/deployment/server/carbonapps
-      - ./connectors/mi/mysql-connector-java-8.0.33.jar:/home/wso2carbon/wso2mi-4.5.0/lib/mysql-connector-java-8.0.33.jar
+      - ./mi/deployment.toml:/home/wso2carbon/wso2mi-4.2.0/conf/deployment.toml
+      - ./carbonapps:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps
+      - ./lib/mysql-connector-j-8.0.33.jar:/home/wso2carbon/wso2mi-4.2.0/lib/mysql-connector-j-8.0.33.jar
     networks:
       - shared-net
     restart: unless-stopped
 
-  wso2am:
-    image: wso2/wso2am:4.6.0
-    container_name: wso2am
-    hostname: wso2am
-    ports:
-      - "9443:9443"   # HTTPS
-      - "8280:8280"   # HTTP
-      - "8243:8243"   # Gateway HTTPS
-    volumes:
-      - ./apim/deployment.toml:/home/wso2carbon/wso2am-4.6.0/repository/conf/deployment.toml
-      - ./connectors/apim/mysql-connector-java-8.0.33.jar:/home/wso2carbon/wso2am-4.6.0/repository/components/lib/mysql-connector-java-8.0.33.jar
-    networks:
-      - shared-net
-    depends_on:
-      - mi
-    restart: unless-stopped
+  # wso2am:
+  #   image: wso2/wso2am:4.4.0
+  #   container_name: wso2am
+  #   hostname: wso2am
+  #   ports:
+  #     - "9443:9443"   # HTTPS
+  #     - "8280:8280"   # HTTP
+  #     - "8243:8243"   # Gateway HTTPS
+  #   volumes:
+  #     - ./apim/deployment.toml:/home/wso2carbon/wso2am-4.4.0/repository/conf/deployment.toml
+  #     - ./lib/mysql-connector-j-8.0.33.jar:/home/wso2carbon/wso2am-4.4.0/repository/components/lib/mysql-connector-j-8.0.33.jar
+  #   networks:
+  #     - shared-net
+  #   depends_on:
+  #     - mi
+  #   restart: unless-stopped
 
 networks:
   shared-net:
