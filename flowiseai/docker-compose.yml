@@ -1,0 +1,24 @@
+services:
+  flowise:
+    image: flowiseai/flowise:latest
+    container_name: flowise
+    restart: unless-stopped
+    ports:
+      - "3030:3000"
+    volumes:
+      - flowise_data:/root/.flowise
+    environment:
+      - PORT=3000
+      - DATABASE_PATH=/root/.flowise
+      - FLOWISE_USERNAME=admin        # optional: set login username
+      - FLOWISE_PASSWORD=changeme     # optional: set login password
+      - LOG_LEVEL=info                # optional: debug, info, warn, error
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
+volumes:
+  flowise_data:
+    driver: local
