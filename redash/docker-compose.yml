@@ -1,0 +1,42 @@
+services:
+  server:
+    image: redash/redash:latest
+    command: server
+    ports:
+      - "5000:5000"
+    environment:
+      REDASH_DATABASE_URL: "postgresql://redash:redashPass@postgres/redash"
+      REDASH_REDIS_URL: "redis://:mylocalpass@redis:6379/0"
+      REDASH_SECRET_KEY: "b30906f19edfb2fbe10a5a9d4dbab3642fc952f4576736e96bdc4c7fffc9a3cb"
+    networks:
+      - shared-net
+
+  worker:
+    image: redash/redash:latest
+    command: worker
+    environment:
+      REDASH_DATABASE_URL: "postgresql://redash:redashPass@postgres/redash"
+      REDASH_REDIS_URL: "redis://:mylocalpass@redis:6379/0"
+      REDASH_SECRET_KEY: "b30906f19edfb2fbe10a5a9d4dbab3642fc952f4576736e96bdc4c7fffc9a3cb"
+      QUEUES: "queries,scheduled_queries,celery"
+      WORKERS_COUNT: 2
+    depends_on:
+      - server
+    networks:
+      - shared-net
+
+  scheduler:
+    image: redash/redash:latest
+    command: scheduler
+    environment:
+      REDASH_DATABASE_URL: "postgresql://redash:redashPass@postgres/redash"
+      REDASH_REDIS_URL: "redis://:mylocalpass@redis:6379/0"
+      REDASH_SECRET_KEY: "b30906f19edfb2fbe10a5a9d4dbab3642fc952f4576736e96bdc4c7fffc9a3cb"
+    depends_on:
+      - server
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true

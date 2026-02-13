@@ -1,0 +1,25 @@
+services:
+  superset:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: superset_app
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_ENV: production
+      SUPERSET_SECRET_KEY: your_secret_key_here
+      SUPERSET_DATABASE_URI: postgresql+psycopg2://superset:superset@postgres:5432/superset
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: mylocalpass
+    volumes:
+      - superset_home:/app/superset_home
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    external: true
+volumes:
+  superset_home:
