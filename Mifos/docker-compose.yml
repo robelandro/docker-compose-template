@@ -1,0 +1,38 @@
+services:
+  fineract:
+    image: apache/fineract:latest
+    container_name: fineract
+    restart: unless-stopped
+    ports:
+      - "8443:8443"
+      - "5000:5000"
+    environment:
+      # Tenant STORE (DB that stores connection info)
+      - FINERACT_HIKARI_JDBC_URL=jdbc:mariadb://mariadb:3306/fineract_tenants
+      - FINERACT_HIKARI_USERNAME=mifos
+      - FINERACT_HIKARI_PASSWORD=mifos
+      - FINERACT_HIKARI_DRIVER_SOURCE_CLASS_NAME=org.mariadb.jdbc.Driver
+
+
+      # DEFAULT tenant connection
+      - FINERACT_DEFAULT_TENANTDB_HOSTNAME=mariadb
+      - FINERACT_DEFAULT_TENANTDB_PORT=3306
+      - FINERACT_DEFAULT_TENANTDB_UID=mifos
+      - FINERACT_DEFAULT_TENANTDB_PWD=mifos
+      - FINERACT_DEFAULT_TENANTDB_NAME=mifosplatform_tenants
+
+      - SERVER_PORT=8443
+      - SERVER_SSL_ENABLED=true
+      - SERVER_SSL_KEY_STORE=/opt/fineract/keystore.p12
+      - SERVER_SSL_KEY_STORE_PASSWORD=yourpassword
+      - SERVER_SSL_KEY_STORE_TYPE=PKCS12
+
+    networks:
+      - shared-net
+
+    volumes:
+      - ./keystore.p12:/opt/fineract/keystore.p12
+
+networks:
+  shared-net:
+    external: true
