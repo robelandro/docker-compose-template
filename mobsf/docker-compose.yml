@@ -9,7 +9,12 @@ services:
       - mobsf_data:/home/mobsf/.MobSF
     environment:
       - MOBSF_DISABLE_AUTHENTICATION=0  # Set to 1 to skip the login screen
-    restart: always
+    restart: unless-stopped
+    networks:
+      - shared-net
 
+networks:
+  shared-net:
+    external: true
 volumes:
   mobsf_data:
