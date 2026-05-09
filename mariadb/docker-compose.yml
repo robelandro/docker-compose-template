@@ -12,6 +12,9 @@ services:
     ports:
       - "3307:3306"
     volumes:
+      - ./con-db/server_collation.cnf:/etc/mysql/conf.d/server_collation.cnf
+      - ./con-db/max_connections.cnf:/etc/mysql/conf.d/max_connections.cnf
+      - ./con-db/docker:/docker-entrypoint-initdb.d:Z,ro
       - mariadb_data:/var/lib/mysql
     networks:
       - shared-net
