@@ -17,6 +17,7 @@ services:
     restart: always
     ports:
       - "5540:5540"
+      - "1111:5540"
     volumes:
       - redisinsight_data:/data
     networks:

@@ -22,5 +22,6 @@
             "username": "etcar",
             "name": "etcar"
         }
-    ]
+    ],
+    "kiroAgent.configureMCP": "Disabled"
 }
