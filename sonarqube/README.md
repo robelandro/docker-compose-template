@@ -79,4 +79,4 @@ docker compose down
 
 ## Scanning Local Projects
 
-For a full step-by-step guide on analyzing projects (including Maven/Spring Boot projects like `kyc-backend`), see [**`SoonerLocalGuide.md`**](./SoonerLocalGuide.md).
+For a full step-by-step guide on analyzing projects (covering Next.js, React, NestJS, Node.js, Java, and Docker CLI scanning), see [**`SoonerLocalGuide.md`**](./SoonerLocalGuide.md).
